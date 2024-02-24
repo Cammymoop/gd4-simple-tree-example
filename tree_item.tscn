@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg32p057nuvcq"]
+
+[ext_resource type="Script" path="res://TreeItem.gd" id="1_xiohn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skuy4"]
+content_margin_left = 6.0
+content_margin_right = 8.0
+bg_color = Color(0.14902, 0.290196, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TreeItem" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_xiohn")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skuy4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text"
+
+[node name="PlusMore" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/PlusMore"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer/PlusMore/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "+"
+vertical_alignment = 1
+
+[node name="ButtonHolder" type="Control" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/ButtonHolder"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -16.0
+offset_right = 13.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "v"
+
+[node name="Uncontainer" type="Control" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemStem" type="ColorRect" parent="PanelContainer/Uncontainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -2.0
+offset_right = -6.0
+offset_bottom = 2.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.592157, 0.796078, 0.792157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ChildItems" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Uncontainer" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Uncontainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -4.0
+offset_right = -6.0
+offset_bottom = -16.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.592157, 0.796078, 0.792157, 1)
+
+[connection signal="gui_input" from="PanelContainer/HBoxContainer/PlusMore" to="." method="_on_plus_more_gui_input"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/ButtonHolder/Button" to="." method="_on_button_pressed"]
